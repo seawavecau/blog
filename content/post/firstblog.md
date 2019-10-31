@@ -154,7 +154,7 @@ npm install github_webhook_handler
       let currentTime = new Date();
       console.log('\n--> ' + currentTime.toLocaleString());
       console.log('Received a push event for %s to %s', event.payload.repository.name, event.payload.ref);
-      exec('sh ./webhook/git_pull.sh', function (error, stdout, stderr) {
+      exec('sh ./git_pull.sh', function (error, stdout, stderr) {
           if(error) {
               console.error('error:\n' + error);
               return;
@@ -206,7 +206,7 @@ systemctl restart nginx
 * 到目前为止，还差最后一步才能完成自动化部署。要Github上创建一个webhook指向你的服务器。
 
 登录Github,进入` seawavecau.github.io`仓库，点击`Setting`
-  ![hugo_1.png](/img/01_hugo_server/01.png)
+  ![hugo_1.png](/img/01_hugo_server/01.jpg)
 注意事项：
 
 ``` shell
@@ -239,3 +239,4 @@ git push -u origin master
 # ALL DONE, 这下服务器也更新了，github源码也提交了，新更新的内容也备份到另一个github仓库。
 #再也不怕了。
 ```
+`文章原型参考bones的[博客](https://www.harddone.com/post/hugo_nginx_1/)：https://github.com/LazyBonesLZ/MyBlog 我是搬运工 👍`
