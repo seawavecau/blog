@@ -239,4 +239,5 @@ git push -u origin master
 # ALL DONE, 这下服务器也更新了，github源码也提交了，新更新的内容也备份到另一个github仓库。
 #再也不怕了。
 ```
-`文章原型参考bones的[博客](https://www.harddone.com/post/hugo_nginx_1/)：https://github.com/LazyBonesLZ/MyBlog 我是搬运工 👍`
+文章原型参考bones的 [博客](https://www.harddone.com/post/hugo_nginx_1/)
+[我是搬运工]https://github.com/LazyBonesLZ/MyBlog  👍

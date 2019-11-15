@@ -20,9 +20,15 @@ ssh root@xxxxx
 cat id_rsa.pub >> .ssh/authorized_keys
 # 退出登陆，再ssh一下检验是否成功
 ```
-
-## 1.2 SSH 别名登陆
+## 1.2 SSH root启用远程登录
+``` shell
+# 修改/etc/ssh/sshd_config文件，启用下面属性
+PermitRootLogin yes
+PubkeyAuthentication yes
+PasswordAuthentication yes
 ```
+## 1.3 SSH 别名登陆
+``` shell
 # 在.ssh目录下创建config
 touch config
 
@@ -31,9 +37,145 @@ vi config
 ```
 
 * Host是服务别名，HostName你的IP，文件内容如下
-```
+``` shell
 Host g
 HostName 35.200.115.242
 User root
 ```
 访问服务器用`ssh g`就可以登录了。
+
+# 2. 系统用户
+## 2.1 创建系统用户
+```
+# 创建
+adduser dev
+# 设置密码
+passwd dev  #输入新密码
+```
+
+## 2.2 修改文件夹owner
+``` shell
+# 创建一个es新用户，并运行程序
+adduser es
+chown -R es:es elasticsearch
+su es
+./elasticsearch -d  # -d 表示后台运行
+```
+
+# 3. tree命令技巧
+## 3.1 常见命令
+```
+tree
+tree folder     
+tree -L 2       # 遍历2层目录显示
+tree -C         # 加颜色
+tree -N folder  # 显示中文乱码
+```
+## 3.2 其他选项：
+`
+-a：显示所有文件和目录；
+-A：使用ASNI绘图字符显示树状图而非以ASCII字符组合；
+-C：在文件和目录清单加上色彩，便于区分各种类型；
+-d：先是目录名称而非内容；
+-D：列出文件或目录的更改时间；
+-f：在每个文件或目录之前，显示完整的相对路径名称；
+-F：在执行文件，目录，Socket，符号连接，管道名称名称，各自加上”*”，”/”，”@”，”|”号；
+-g：列出文件或目录的所属群组名称，没有对应的名称时，则显示群组识别码；
+-i：不以阶梯状列出文件和目录名称；
+-l：<范本样式> 不显示符号范本样式的文件或目录名称；
+-l：如遇到性质为符号连接的目录，直接列出该连接所指向的原始目录；
+-n：不在文件和目录清单加上色彩；
+-N：直接列出文件和目录名称，包括控制字符；
+-p：列出权限标示；
+-P：<范本样式> 只显示符合范本样式的文件和目录名称；
+-q：用“？”号取代控制字符，列出文件和目录名称；
+-s：列出文件和目录大小；
+-t：用文件和目录的更改时间排序；
+-u：列出文件或目录的拥有者名称，没有对应的名称时，则显示用户识别码；
+-x：将范围局限在现行的文件系统中，若指定目录下的某些子目录，其存放于另一个文件系统上，则将该目录予以排除在寻找范围外。
+`
+
+# 4. 网络命令
+## 4.1 ab 命令
+`
+# centos 安装
+yum -y install httpd-tools
+# ab -n 请求次数 -c 并发数 url
+ab -n 10 -c 2 http://baidu.com
+`
+
+`
+-n  在测试会话中所执行的请求个数。默认时，仅执行一个请求。
+-c  一次产生的请求个数。默认是一次一个。
+`
+
+## 4.2 netstat 命令
+
+``` shell
+# centos安装目录
+yum install net-tools
+# 使用命令,通过端口查看程序是否启动
+netstat -an | grep 端口
+#结果如下：
+# tcp        0      0 0.0.0.0:11800           0.0.0.0:*               LISTEN
+# 还可以这么用
+netstat -anltp|grep 22
+# 还可以 这么用
+netstat -anp|grep java
+```
+
+## 4.3 Mac下查看对方服务端口是否开启命令
+``` nc -vz -w 2 192.168.50.8 12800 ```
+* 等同于 `telnet ip 端口`
+
+
+
+# 5. SHELL语法
+## 5.1 while循环
+``` shell
+while true
+    do
+    .....    #执行命令
+    sleep 3  #单位s
+    done
+```
+
+# 6. Centos系统设置
+## 修改系统时间和时区
+### 手动修改
+``` shell
+# 修改时区
+cp  /usr/share/zoneinfo/Asia/Shanghai  /etc/localtime
+# 修改时间
+date -s  ‘2019-11-11 10:50:00’
+# 使用date命令查看是否成功
+date
+> 2019年 11月 05日 星期二 10:29:01 CST
+# 将时间写入bios避免重启失效
+hwclock -w
+
+```
+### 修改时区另一种办法，需重启生效
+修改/etc/sysconfig/clock文件，把ZONE的值改为Asia/Shanghai，UTC值改为false，改完后的文件如下：
+```
+# The time zone of the system is defined by the contents of /etc/localtime.
+# This file is only for evaluation by system-config-date, do not rely on its
+# contents elsewhere.
+ZONE="Asia/Shanghai"
+UTC=false
+ARC=false
+```
+
+### 同步网络
+* 外网同步
+```shell
+ntpdate -u time.windows.com 
+```
+
+* 局域网内同步
+选择局域网中的一台机器作为ntp服务器，ntpd 配置.
+
+配置开机自启动
+``` shell 
+chkconfig ntpd on
+```

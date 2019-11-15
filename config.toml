@@ -28,7 +28,7 @@ googleAnalytics = "UA-139304185-1"
   description = "专注于IT互联网，包括但不限于Java、架构、Python等"
 
   busuanzi = true
- # googleAd = "ca-pub-5294048051542592"
+  googleAd = "ca-pub-2762739525222492"
 
 
   [[params.links]]
