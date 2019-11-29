@@ -12,7 +12,7 @@ tags: [Shell,SSH,ssh-keygen,免密登录]
 ``` shell
 # 产生key
 ssh-keygen -i rsa -C "root@aliyun"
-# copy公钥到远程机器
+# copy公钥到远程机器（google云在浏览器ssh下，用sudo su切换到root）
 scp ~/.ssh/id_rsa.pub root@xxxxx:
 # 登陆远程机器
 ssh root@xxxxx
@@ -27,6 +27,9 @@ PermitRootLogin yes
 PubkeyAuthentication yes
 PasswordAuthentication yes
 ```
+## 重启sshd
+```systemctl resart sshd``` 使配置生效
+
 ## 1.3 SSH 别名登陆
 ``` shell
 # 在.ssh目录下创建config
@@ -97,17 +100,39 @@ tree -N folder  # 显示中文乱码
 
 # 4. 网络命令
 ## 4.1 ab 命令
-`
+### 安装
+``` shell
 # centos 安装
 yum -y install httpd-tools
+```
+### 使用
+```shell
 # ab -n 请求次数 -c 并发数 url
 ab -n 10 -c 2 http://baidu.com
-`
-
-`
--n  在测试会话中所执行的请求个数。默认时，仅执行一个请求。
--c  一次产生的请求个数。默认是一次一个。
-`
+# 并发测试
+ab -r -n 150000 -c 10000 http://url
+# post文件
+ab -n 100 -c 10 -k -T "application/json" -p data.txt http://xxxxx
+# post 字符串
+ab -n 100 -c 10 -k -T "application/json" -p "{'key1': 'value1', 'key2': 'value2'}" "http://test.com/post" >> report.html
+# post 参数值
+ab -n 100 -c 10 -k -p "k1=value1&k2=value2" http://xxxx
+```
+* 结合python/shell操作使用,可以套用for循环
+* 参数
+```
+-n ：总共的请求执行数，缺省是1；
+-c： 并发数，缺省是1；
+-t：测试所进行的总时间，秒为单位，缺省50000s；
+-k：发送keep-alive指令到服务器；
+-T：header头内容类型，T是大写的，内容是字符串形式；
+-p：post请求，后面加post参数文档路径，默认为当前路径或者-p后可以是json格式、可以是&连接参数，放在""双引号之间；
+-w：以HTML表格输出结果，默认是两列宽度的一个表；
+-C：请求附加一个cookie，典型形式是cookieName = value；C大写
+-H：请求附加多个cookie；-H  “Cookie: key1=value1; key2=value2”
+-i：执行的是head请求不是get；
+```
+* 延伸阅读：[wrk,ab,jmeter,lutos压测工具比较](https://testerhome.com/topics/17068)
 
 ## 4.2 netstat 命令
 
@@ -179,3 +204,52 @@ ntpdate -u time.windows.com
 ``` shell 
 chkconfig ntpd on
 ```
+# 7. crontab定时任务
+* crontab就是一个自定义定时器
+## crontab 服务命令
+```shell
+sudo service crond start     #启动服务
+sudo service crond stop      #关闭服务
+sudo service crond restart   #重启服务
+sudo service crond reload    #重新载入配置
+sudo service crond status    #查看服务状态
+```
+## 定时任务设定
+```shell
+# 添加定时任务
+# 方法一
+crontab update_blog.cron
+# 方法二
+crontab -e
+# 添加 0 12,23 * * * /etc/cron.d/update_blog.sh >> /etc/cron.d/update_blog.log
+# 查看定时任务
+crontab -l
+```
+
+# 8. zsh
+    按方向键↑和↓来查看之前执行过
+    可以用 !!来执行上一条命令
+    使用 ctrl-r 来搜索命令历史记录
+    命令和文件补全(按tab键)
+    .zshrc 中添加 alias shortcut='this is the origin command'
+    j hado 即可正确跳转。j --stat 可以看你的历史路径库。
+    输入 d，即可列出你在这个会话里访问的目录列表
+    通配符搜索：ls -l */.sh 文件少时可以代替 find
+## 文件查找
+```find . -name 'Loan*Mapper.java'```
+## 插件
+* 命令行google: web-search
+* 应用使用命令行:
+    - 在bash 中添加IDEA： Tools->Create Command-Line Launcher...；添加后使用 idea . 命令打开
+## 扩展阅读
+[玩转Mac常用命令、zsh等技巧](https://www.jianshu.com/p/28de342f5ecc)
+
+
+# 9. Brew 
+* cat高亮插件:```brew install ccat```
+* tree命令
+* 查字典dict computer:```sudo pip install dict-cli```
+* open 打开目录
+* wc 查看文件多少行:```wc -l out.txt```
+* 查看前N行:```head -10 xx.txt ```
+* tail -100 xxx.txt,more xxx.txt,

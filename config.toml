@@ -41,13 +41,13 @@ googleAnalytics = "UA-139304185-1"
   name = "高级Java"
   url = "https://github.com/doocs/advanced-java"
 
-  [[params.ads]]
-  title = "阿里云双十一拼购活动，全年最低"
-  url = "https://www.aliyun.com/1111/2019/group-buying-share?ptCode=84EA6B02F809BD9700BC5B91038EABDA647C88CF896EF535&share_source=copy_link"
-  [[params.ads]]
-  title = "阿里云双十一特价商品(截止11.11)"
-  url = "https://www.aliyun.com/1111/2019/group-buying-share?ptCode=84EA6B02F809BD9700BC5B91038EABDA647C88CF896EF535&share_source=copy_link"
-  img = "https://i.loli.net/2019/10/31/2VqXjsg4OAQZmUk.jpg"
+   # [[params.ads]]
+   # title = "阿里云双十一拼购活动，全年最低"
+   # url = "https://www.aliyun.com/1111/2019/group-buying-share?ptCode=84EA6B02F809BD9700BC5B91038EABDA647C88CF896EF535&share_source=copy_link"
+   # [[params.ads]]
+   # title = "阿里云双十一特价商品(截止11.11)"
+   # url = "https://www.aliyun.com/1111/2019/group-buying-share?ptCode=84EA6B02F809BD9700BC5B91038EABDA647C88CF896EF535&share_source=copy_link"
+   # img = "https://i.loli.net/2019/10/31/2VqXjsg4OAQZmUk.jpg"
 
   [[params.ads]]
   title = "搬瓦工VPS"
