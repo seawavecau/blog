@@ -1,7 +1,8 @@
 baseURL = "http://blog.wacai.ml"
 languageCode = "en-us"
 title = "AppleWang的技术博客"
-theme = "maupassant"
+theme = "paper" 
+# "maupassant"
 
 # 默认是70
 summaryLength = 140

@@ -37,7 +37,7 @@ SkyWalking 逻辑上分为四部分: 探针, 平台后端, 存储和用户界面
 # 本地环境安装
 
 ## 在centos7下安装skywalking6.4.0
-``` shell
+``` sh
 # 下载skywalking
 wget http://mirrors.tuna.tsinghua.edu.cn/apache/skywalking/6.4.0/apache-skywalking-apm-6.4.0.tar.gz
 

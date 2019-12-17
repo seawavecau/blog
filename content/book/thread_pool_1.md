@@ -1,7 +1,9 @@
 ---
 title: "Java线程池 - ThreadPoolExecutor"
 date: 2019-11-12T14:48:28+08:00
-draft: true
+draft: false
+categories: [java]
+tags: [java,线程池,并发]
 ---
 
 # 线程池
@@ -18,3 +20,30 @@ ThreadPoolExecutor执行execute方法有4种情况：
 2）如果运行的线程等于或者多余corePoolSize，则将任务加入BlockingQueue中，在等待队列中，等待有新的线程可以运行。
 3）如果BlockingQueue队列满了，且没有超过maxPoolSize，则创建新的线程来处理任务。
 4）如果创建的线程超过maxPoolSize，任务会拒绝，并调用RejectExecutionHandler.rejectedExecution()方法。
+
+## 线程池的使用
+### 线程池的创建
+一般我们可以通过ThreadPoolExecutor来创建一个线程池。
+在ThreadPoolExecutor类中提供了四个构造方法：
+```java
+public class ThreadPoolExecutor extends AbstractExecutorService {
+    .....
+    public ThreadPoolExecutor(int corePoolSize,int maximumPoolSize,long keepAliveTime,TimeUnit unit,
+            BlockingQueue<Runnable> workQueue);
+
+    public ThreadPoolExecutor(int corePoolSize,int maximumPoolSize,long keepAliveTime,TimeUnit unit,
+            BlockingQueue<Runnable> workQueue,ThreadFactory threadFactory);
+
+    public ThreadPoolExecutor(int corePoolSize,int maximumPoolSize,long keepAliveTime,TimeUnit unit,
+            BlockingQueue<Runnable> workQueue,RejectedExecutionHandler handler);
+
+    public ThreadPoolExecutor(int corePoolSize,int maximumPoolSize,long keepAliveTime,TimeUnit unit,
+        BlockingQueue<Runnable> workQueue,ThreadFactory threadFactory,RejectedExecutionHandler handler);
+    ...
+}
+```
+通过
+```java
+new ThreadPoolExecutor(corePoolSize,maximumPoolSize,keepAliveTime,unit,workQueue,threadFactory,handler);
+```
+创建一个新的线程池。

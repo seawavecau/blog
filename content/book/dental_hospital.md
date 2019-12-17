@@ -1,7 +1,7 @@
 ---
 title: "Dental_hospital"
 date: 2019-11-15T15:16:06+08:00
-draft: true
+draft: false
 ---
 
 ## 牙齿问题
@@ -26,7 +26,7 @@ draft: true
 ## 九院相关
 * [20岁偏颌九院手术经历](https://www.bilibili.com/video/av64930954/)
 * [注意事项](http://www.yatao.cn/thread-229287-1-1.html)
-* [病友微博直播]https://weibo.com/dannyhu   ===   [知乎总结](https://zhuanlan.zhihu.com/p/84610507)
+* [病友微博直播](https://weibo.com/dannyhu). [知乎上总结](https://zhuanlan.zhihu.com/p/84610507), [手术日记](https://zine.la/article/631d0f921d874f70b42d8c535ab81110/)
 * 挂号:第一次挂 "普通门诊"->"正畸正颌"; 确定好正畸医生和正颌医生,然后在"专家门诊"->""
 * 费用参考
     ![费用参考.jpg](https://wx4.sinaimg.cn/mw690/64d35b47gy1g7fgkxoombj214t0k8768.jpg)
@@ -34,6 +34,20 @@ draft: true
   正畸医生：朱敏
   正颌方案医生：黎光伟
   正颌手术医生：蔡鸣
+  杨驰   颞下颌关节病
+## 九院2019-12-05门诊
+* 看了2个医生,上午正畸医生4室1台,下午正合正畸夏蕴晖
+* 牙周炎严重,治疗后正畸(7号锁合)
+* 有鼾症,需要找卢晓峰诊断是否有"睡眠呼吸障碍"
+* 下巴后缩,老了容易影响呼吸,正畸医生建议整体治疗.
+* 颞下关节
+* 可能:
+  * 小下巴 
+* 杭州医生:
+  * 陈丹鹏: 杭州口腔医院副院长, 可以微信yms121212 预约城西门诊. [微博](https://www.weibo.com/u/5217278156?is_hot=1)
+  * 卢海平: 博凡牙科:西溪世纪中心2号楼145室.
+  * 骆英: 杭州口腔医院庆春分院院长
+
 ## 学习
 * 𬌗hé：也称作咬合，是在神经肌肉控制下，上下颌牙发生接触的现象，包括静止和运动状态。
 * 颌hé：组成口腔的一部分，构成口腔上部和下部的骨头和肌肉组织。上部称上颌；下部称下颌
@@ -50,7 +64,8 @@ draft: true
 * 下颌骨升支矢状劈开截骨术
 * 颏成形术
 
-
+## 拍片材料
+* ![牙齿.png](https://i.loli.net/2019/12/06/RogMkJ2QjpuLXaY.png)
 ## 儿童牙齿问题
 参考文章[换牙期儿童牙齿长歪了怎办？ 专家支招儿童换牙攻略](https://www.familydoctor.com.cn/baby/a/201610/1339251.html)
 [浙江省口腔医生的建议](https://new.qq.com/rain/a/20190804A0DXBD)
